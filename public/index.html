@@ -8,26 +8,55 @@
   <title>Drawing App</title>
   <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
 </head>
 
 <body>
-  <main>
-    <h1>Drawing App</h1>
-    <nav>
-      <ul>
+  <main class="container">
+    <!-- Title -->
+    <div class="row">
+      <div class="col">
+        <h1>Drawing App</h1>
+      </div>
+    </div>
+    <!-- Controls -->
+    <div class="row mb-4 align-items-end text-center">
+      <div class="col">
+        <label for="colorPicker" class="form-label">Color</label>
+        <div class="row">
+          <div class="col">
+            <input type="color" class="form-control form-control-color w-100" id="colorPicker" value="#563d7c"
+              title="Choose your color">
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <label for="weightPicker" class="form-label">Weight</label>
+        <input type="number" name="Weight" class="form-control w-100" id="weightPicker" value="1">
+      </div>
+      <div class="col">
+        <button class="btn btn-primary w-100" type="button" id="clearCanvas">Clear</button>
+      </div>
+      <div class="col offset-8">
 
-        <li><input type="color" name="Color" id="colorPicker"><label for="colorPicker">Color</label></li>
-        <li><button type="button" id="clearCanvas">Clear</button></li>
-        <li><input type="number" name="Weight" id="weightPicker" value="5">Weight</li>
-      </ul>
-    </nav>
-    <div id="sketch-holder"></div>
-    
+      </div>
+
+
+
+    </div>
+    <!-- Canvas -->
+    <div class="row">
+      <div class="col">
+        <div id="sketch-holder" class="w-100"></div>
+      </div>
+    </div>
+
   </main>
 
 
 
   <script src="../src/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>

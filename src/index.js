@@ -1,10 +1,27 @@
 
+let mouseIsOverCanvas = false;
+
+
+let canvas = undefined;
+
+const resize = () => {
+  resizeCanvas(Math.floor(windowWidth * 0.6), Math.floor(windowHeight * 0.6));
+}
+
+
 
 function setup() {
   console.log(`Setting canvas...`);
-  let canvas = createCanvas(400, 100);
+  const parent = document.getElementById('sketch-holder')
+  canvas = createCanvas(1, 1);
+  
+  canvas.mouseOver(() => mouseIsOverCanvas = true);
+  canvas.mouseOut(() => mouseIsOverCanvas = false);
+  
+  
+  resize();
   canvas.id('canvas');
-  canvas.parent('sketch-holder');
+  canvas.parent(parent);
   background(220);
 }
 
@@ -14,7 +31,7 @@ function draw() {
 
   stroke(document.getElementById('colorPicker').value);
   strokeWeight(document.getElementById('weightPicker').value);
-  if (mouseIsPressed) {
+  if (mouseIsPressed && mouseIsOverCanvas) {
     line(mouseX, mouseY, pmouseX, pmouseY);
   }
 
@@ -27,7 +44,7 @@ document.getElementById('clearCanvas').addEventListener('click', () => {
 });
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+  resize();
   background(220);
 }
 

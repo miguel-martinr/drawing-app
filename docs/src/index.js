@@ -49,6 +49,23 @@ function windowResized() {
 }
 
 
+function downloadURI(uri, name) {
+  var link = document.createElement("a");
+  link.download = name;
+  link.href = uri;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  delete link;
+}
+
+document.getElementById('exportJPG').addEventListener('click', () => {
+  const canvas = document.getElementById("canvas");
+  const img = canvas.toDataURL("image/jpeg");
+  downloadURI(img, 'drawing');
+})
+
+
 
 
 

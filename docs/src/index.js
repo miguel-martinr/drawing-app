@@ -1,17 +1,14 @@
 
 let mouseIsOverCanvas = false;
-
-
 let canvas = undefined;
+
+
 
 const resize = () => {
   resizeCanvas(Math.floor(windowWidth * 0.6), Math.floor(windowHeight * 0.6));
 }
 
-
-
 function setup() {
-  console.log(`Setting canvas...`);
   const parent = document.getElementById('sketch-holder')
   canvas = createCanvas(1, 1);
   
@@ -38,33 +35,47 @@ function draw() {
   
 }
 
-document.getElementById('clearCanvas').addEventListener('click', () => {
-  clear();
-  background(220);
-});
 
 function windowResized() {
   resize();
   background(220);
 }
 
+const getExportType = (name = 'exportType') => {
+  return document.querySelector(`input[name=${name}]:checked`).value;
+}
 
-function downloadURI(uri, name) {
+
+const  downloadURI = (uri, name) => {
+  // Crea un <a>
   var link = document.createElement("a");
+  // Nombre del fichero a descargar
   link.download = name;
+  // Link de descarga (href)
   link.href = uri;
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
   delete link;
+  return false;
 }
 
-document.getElementById('exportJPG').addEventListener('click', () => {
+/***********************************************************************************/
+// EventListenners
+
+document.getElementById('exportDraw').addEventListener('click', () => {
   const canvas = document.getElementById("canvas");
-  const img = canvas.toDataURL("image/jpeg");
-  downloadURI(img, 'drawing');
+
+  const exportType = getExportType();
+  const img = canvas.toDataURL(exportType, 1);
+  console.log(exportType);
+  return downloadURI(img, 'drawing');
 })
 
+document.getElementById('clearCanvas').addEventListener('click', () => {
+  clear();
+  background(220);
+});
 
 
 
